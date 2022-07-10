@@ -1,11 +1,11 @@
-
+import React from 'react';
 export default function H({
   headerSize,
   children,
   className,
 }: {
   headerSize: '1' | '2' | '3' | '4' | '5' | '6';
-  children?: h.JSX.Element;
+  children?: React.ReactElement;
   className?: string;
 }) {
   {
