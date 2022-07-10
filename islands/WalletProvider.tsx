@@ -16,10 +16,15 @@ export default function WalletProvider({children}: any) {
     });
     if (typeof window.ethereum !== 'undefined') {
       console.log('MetaMask is installed!');
-      ethereum.on('accountsChanged', async (accounts: Array<string>) => {
+      window.ethereum.on('accountsChanged', async (accounts: Array<string>) => {
+        console.log('accountsChanged', accounts);
+        if (accounts.length === 0) {
+          // window.location.reload();
+          setConnected(false);
+        }
         setAddress(await accounts[0]);
       });
-      ethereum.on('chainChanged', async (network: Array<string>) => {
+      window.ethereum.on('chainChanged', async (network: Array<string>) => {
         window.location.reload();
       });
     }

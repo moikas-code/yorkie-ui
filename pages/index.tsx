@@ -90,19 +90,18 @@ export default function Home() {
                 {!connected ? (
                   <Button
                     onClick={() => {
-                      console.log('loggin in');
-                      login();
+                      login().then(() => window.location.reload());
                     }}
                     className={'fnt-fff fnt-ACDC0A-hover'}>
                     Connect Wallet
                   </Button>
                 ) : (
-                  <div
+                  <Button
                     className={
                       'd-flex flex-row justify-content-center align-items-center fnt-fff fnt-ACDC0A-hover'
                     }>
                     {truncateAddress(address)}
-                  </div>
+                  </Button>
                 )}
               </div>
             </div>
