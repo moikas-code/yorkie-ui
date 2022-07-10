@@ -7,7 +7,7 @@ export default function H({
   headerSize: '1' | '2' | '3' | '4' | '5' | '6';
   children?: React.ReactElement;
   className?: string;
-}) {
+}):React.ReactElement {
   {
     switch (headerSize) {
       case '1':

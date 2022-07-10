@@ -1,24 +1,24 @@
 import type {NextPage} from 'next';
 import Head from 'next/head';
-import {Fragment, useState, useEffect} from 'react';
+import React, {Fragment, useState, useEffect} from 'react';
 import NavButton from '../islands/NavButton';
 import Button from '../islands/Button';
 import WalletProvider from '../islands/WalletProvider';
 import {login} from '../helpers';
-function truncateAddress(address) {
+function truncateAddress(address: string): string {
   try {
     return `${address.substring(0, 6).toLowerCase()}...${address
       .substring(38, 42)
       .toLowerCase()}`;
   } catch (error) {
     console.log(`truncateAddress(): ${error}`);
+    return `truncateAddress(): ${error}`;
   }
 }
-export default function Home() {
+export default function Home(): React.ReactElement {
   return (
     <WalletProvider>
       {({connected, address}: any) => {
-        console.log('connected', connected);
         return (
           <>
             <style global jsx>{`
@@ -61,11 +61,41 @@ export default function Home() {
                 min-height: 175px;
               }
 
+              .yh1 {
+                font-size: 10vw;
+              }
+              .yh2 {
+                font-size: 7vw;
+              }
+
               .s1 {
                 min-height: 800px;
               }
-            `}</style>
 
+              @media (max-width: 512px) {
+                .yh1 {
+                  font-size: 10vw;
+                }
+                .yh2 {
+                  font-size: 7vw;
+                }
+                .s1 {
+                  min-height: 400px;
+                }
+              }
+              @media (max-width: 768px) {
+                .yh1 {
+                  font-size: 17vw;
+                }
+                .yh2 {
+                  font-size: 10vw;
+                }
+                .s1 {
+                  min-height: 600px;
+                }
+              }
+            `}</style>
+            {/*  */}
             <div
               id='home'
               className={'navbar p-2 d-flex flex-row justify-content-between'}>
@@ -105,7 +135,7 @@ export default function Home() {
                 )}
               </div>
             </div>
-
+            {/*  */}
             <div
               className={
                 's1 d-flex flex-column justify-content-center align-items-center position-relative overflow-hidden'
@@ -114,11 +144,11 @@ export default function Home() {
                 className={
                   'z-1 d-flex flex-column justify-content-center align-items-center'
                 }>
-                <span className='h2 fnt-fff fnt-stroke'>Join The</span>
-                <span className='display-1 h2 fnt-fff fnt-stroke'>
+                <span className='h1 yh2 fnt-fff fnt-stroke'>Join The</span>
+                <span className='display-1 yh1 fnt-fff fnt-stroke'>
                   Yorkieverse
                 </span>
-                <span className='h2 fnt-fff fnt-stroke'>Today!</span>
+                <span className='h1 yh2 fnt-fff fnt-stroke'>Today!</span>
               </div>
               <div className='d-flex flex-row justify-content-center position-absolute top-50 start-50 translate-middle overflow-hidden'>
                 <img src={'/yorkie-0.png'} />
@@ -127,6 +157,7 @@ export default function Home() {
                 <img src={'/yorkie-3.png'} />
               </div>
             </div>
+            {/*  */}
             <div
               id='roadmap'
               className={
